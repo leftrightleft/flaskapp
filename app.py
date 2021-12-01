@@ -26,9 +26,29 @@ def index():
 				</form>'''
 @app.route('/hel')
 def hel():
-	name =request.args.get('fname')
-	return '<h1>Hello {}<h1>'.format(name)
-	
+	na=request.args.get('fname')
+	db=get_db()
+	db.execute('insert into profile(pname) values(?)',(na,))
+	db.commit()
+	return '''  <h1> Hello {}.</h1>
+				<h2>Search other ID's<h2>
+				<form method = "GET" action="/serc">
+				<input type ="text" name="idd">
+				<input type="submit" value="See database">
+				</form>
+				<form method = "GET" action="/">
+				<input type="submit" value="Enter name again">
+				</form>'''.format(na)
+@app.route('/serc')
+def serc():
+		idd =request.args.get('idd')
+		db=get_db()
+		abc='select * from profile where id='+idd
+		cur=db.execute(abc)
+		entr=cur.fetchone()
+		return '<h1>Hello {}</h1>'.format(entr[1])
+		
+
 @app.route('/json',methods=['POST','GET'])
 def json():
 	return jsonify({"key3": "value", "key2":[1,2,3]})
