@@ -90,12 +90,12 @@ def view():
 
 @app.route('/result', methods=['GET'])
 def result():
-	id=request.args.get('ids')
+	id_name=request.args.get('ids')
 	db = get_db()
 # 	abc = "SELECT * FROM books WHERE name LIKE '%" + id + "%'"
 	# abc='select id ,name, password from users where id='+id
 # 	print(abc)
-	cur=db.execute("SELECT * FROM profile WHERE id LIKE '%s'", ids)
+	cur=db.execute("SELECT * FROM profile WHERE id LIKE '%s'", id_name)
 	entry = cur.fetchall()
 	return render_template('display.html',results=entry)
 
