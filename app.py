@@ -43,8 +43,8 @@ def hel():
 def serc():
 		idd =request.args.get('idd')
 		db=get_db()
-# 		abc='select * from profile where id='+idd
-		cur=db.execute('select * from profile where id='+idd)
+ 		abc='select * from profile where id='+idd
+		cur=db.execute(abc)
 		entr=cur.fetchone()
 		return '<h1>Hello {}</h1>'.format(entr[1])
 		
@@ -92,10 +92,10 @@ def view():
 def result():
 	id=request.args.get('ids')
 	db = get_db()
-	abc = "SELECT * FROM books WHERE name LIKE '%" + id + "%'"
+# 	abc = "SELECT * FROM books WHERE name LIKE '%" + id + "%'"
 	# abc='select id ,name, password from users where id='+id
-	print(abc)
-	cur=db.execute(abc)
+# 	print(abc)
+	cur=db.execute("SELECT * FROM profile WHERE id LIKE '%" + ids + "%'")
 	entry = cur.fetchall()
 	return render_template('display.html',results=entry)
 
