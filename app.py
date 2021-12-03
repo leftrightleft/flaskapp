@@ -92,7 +92,8 @@ def view():
 def result():
 	id=request.args.get('ids')
 	db = get_db()
-	abc='select id ,name, password from users where id='+id
+	abc = "SELECT * FROM books WHERE name LIKE '%" + id + "%'"
+	# abc='select id ,name, password from users where id='+id
 	print(abc)
 	cur=db.execute(abc)
 	entry = cur.fetchall()
