@@ -43,8 +43,8 @@ def hel():
 def serc():
 		idd =request.args.get('idd')
 		db=get_db()
-		abc='select * from profile where id='+idd
-		cur=db.execute(abc)
+# 		abc='select * from profile where id='+idd
+		cur=db.execute('select * from profile where id='+idd)
 		entr=cur.fetchone()
 		return '<h1>Hello {}</h1>'.format(entr[1])
 		
