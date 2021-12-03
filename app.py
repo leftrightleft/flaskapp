@@ -4,7 +4,7 @@ import sqlite3
 app=Flask(__name__)
 
 def connect_db():
-	sql=sqlite3.connect('/Users/gauravjain/Documents/Flask_App/data.db')
+	sql=sqlite3.connect('./data.db')
 	sql.row_factory = sqlite3.Row
 	return sql
 def get_db():
@@ -93,6 +93,7 @@ def result():
 	id=request.args.get('ids')
 	db = get_db()
 	abc='select id ,name, password from users where id='+id
+	print(abc)
 	cur=db.execute(abc)
 	entry = cur.fetchall()
 	return render_template('display.html',results=entry)
