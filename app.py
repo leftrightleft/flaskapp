@@ -95,7 +95,7 @@ def result():
 # 	abc = "SELECT * FROM books WHERE name LIKE '%" + id + "%'"
 	# abc='select id ,name, password from users where id='+id
 # 	print(abc)
-	cur=db.execute("SELECT * FROM profile WHERE id LIKE '%" + ids + "%'")
+	cur=db.execute("SELECT * FROM profile WHERE id LIKE '%s'", ids)
 	entry = cur.fetchall()
 	return render_template('display.html',results=entry)
 
